@@ -1,0 +1,119 @@
+/* General styles */
+.seleccion-view {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh; /* Asegura que ocupe toda la altura de la pantalla */
+    box-sizing: border-box;
+    background-color: white;
+}
+
+.header-title {
+    color: #283618;
+    margin-bottom: 20px;
+    text-align: center; /* Centra el título */
+    font-size: 1.8rem;
+}
+
+/* Card container */
+.card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 90%; /* Ocupa el 90% del ancho disponible */
+    max-width: 1200px; /* Ancho máximo para pantallas grandes */
+}
+
+.card-header {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #283618;
+    text-align: center; /* Centrar el texto del encabezado */
+}
+
+.card-body {
+    overflow-x: auto; /* Habilita scroll horizontal para tablas grandes */
+    padding: 10px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    color: #283618;
+    font-size: 0.9rem; /* Ajustar el tamaño de fuente */
+}
+
+.table th,
+.table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.table th {
+    background-color: #f4f4f4;
+    color: #283618;
+}
+
+/* Button styles */
+.btn {
+    font-size: 0.9rem;
+    padding: 10px 15px;
+}
+
+.btn-success {
+    background-color: #606C37;
+    border-color: #606C37;
+}
+
+/* Modal styles */
+.modal-content {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto; /* Centra el modal */
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    color: white;
+    background-color: #606C37;
+    padding: 10px 20px;
+}
+
+.modal-body {
+    margin: 20px 0;
+    font-size: 0.9rem;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .card {
+        width: 100%; /* Ocupa todo el ancho disponible en pantallas pequeñas */
+        padding: 10px;
+    }
+
+    .table {
+        font-size: 0.8rem; /* Reduce el tamaño de fuente en pantallas pequeñas */
+    }
+
+    .header-title {
+        font-size: 1.5rem; /* Reduce el tamaño del título */
+    }
+
+    .modal-content {
+        width: 95%; /* Ocupa casi todo el ancho en pantallas pequeñas */
+    }
+}

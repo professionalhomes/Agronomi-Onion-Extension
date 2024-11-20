@@ -1,0 +1,169 @@
+/* General styles for the navbar */
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: #556b2f; /* Verde musgo */
+    color: white;
+    transition: width 0.3s ease;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Estilos para cuando está desplegado */
+.nav.open {
+    width: 250px; /* Ancho completo */
+}
+
+/* Estilos para cuando está colapsado */
+.nav.collapsed {
+    width: 60px; /* Ancho reducido */
+}
+
+/* Botón para colapsar/desplegar */
+.nav__toggle {
+    margin: 10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    align-self: flex-end;
+    transition: transform 0.3s ease;
+}
+
+/* Contenedor del navbar */
+.nav__container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/* Enlaces del navbar */
+.nav__link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 10px 15px;
+    color: white;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav__link:hover {
+    background-color: #4b5e27; /* Un tono más oscuro */
+}
+
+/* Íconos */
+.nav__icon {
+    font-size: 24px;
+    margin-right: 15px; /* Espacio a la derecha del ícono */
+}
+
+/* Texto del enlace */
+.nav__name {
+    font-size: 16px;
+    white-space: nowrap;
+}
+
+/* Ocultar texto y ajustar íconos cuando está colapsado */
+.nav.collapsed .nav__name {
+    display: none; /* Oculta el texto */
+}
+
+.nav.collapsed .nav__icon {
+    margin-right: 0; /* Quita el espacio del ícono */
+    text-align: center;
+    font-size: 24px; /* Ajusta el tamaño si es necesario */
+}
+
+/* Ajustar los enlaces cuando está colapsado */
+.nav.collapsed .nav__link {
+    justify-content: center; /* Centra los íconos */
+    padding: 10px; /* Ajusta el espacio */
+}
+
+/* Logo del navbar */
+.nav__logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.nav__logo-name {
+    margin-left: 10px;
+}
+
+/* Ajustar el logo en estado colapsado */
+.nav.collapsed .nav__logo-name {
+    display: none; /* Oculta el texto del logo */
+}
+
+/* Sección logout */
+.nav__logout {
+    margin-top: auto;
+    padding: 10px;
+    font-size: 14px;
+    text-align: center;
+    width: 100%;
+}
+
+/* Dropdown container */
+.nav__dropdown {
+    width: 100%;
+    position: relative;
+}
+
+/* Dropdown button */
+.nav__dropdown .nav__link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+/* Dropdown menu */
+.nav__dropdown-menu {
+    background-color: #4b5e27; /* Tono más oscuro */
+    border-radius: 4px;
+    margin-top: 5px;
+    padding: 5px 0;
+    position: relative;
+    width: 100%;
+}
+
+/* Dropdown items */
+.nav__dropdown-item {
+    display: block;
+    padding: 10px 15px;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav__dropdown-item:hover {
+    background-color: #3e4a20; /* Más oscuro al pasar */
+}
+
+/* Chevron icon */
+.nav__dropdown-icon {
+    margin-left: auto;
+    font-size: 16px;
+}
+
+/* Ocultar dropdown si el navbar está colapsado */
+.nav.collapsed .nav__dropdown-menu {
+    display: none;
+}
+
+.nav.collapsed .nav__dropdown-item {
+    display: none;
+}
