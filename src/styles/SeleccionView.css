@@ -8,6 +8,7 @@
     min-height: 100vh; /* Asegura que ocupe toda la altura de la pantalla */
     box-sizing: border-box;
     background-color: white;
+    height: 100%;
 }
 
 .header-title {
@@ -19,15 +20,18 @@
 
 /* Card container */
 .card {
+    width: 95%; /* Ajuste para ocupar el 95% del ancho de la pantalla */
+    height: 85%; /* Aumenta ligeramente la altura */
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 15px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    width: 90%; /* Ocupa el 90% del ancho disponible */
-    max-width: 1200px; /* Ancho máximo para pantallas grandes */
+    max-width: none; /* Elimina el ancho máximo para pantallas grandes */
+    overflow: hidden;
 }
 
+/* Card header */
 .card-header {
     font-size: 1.2rem;
     font-weight: bold;
@@ -35,11 +39,13 @@
     text-align: center; /* Centrar el texto del encabezado */
 }
 
+/* Card body */
 .card-body {
     overflow-x: auto; /* Habilita scroll horizontal para tablas grandes */
     padding: 10px;
 }
 
+/* Table styles */
 .table {
     width: 100%;
     border-collapse: collapse;
@@ -60,6 +66,30 @@
     color: #283618;
 }
 
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 5px;
+}
+
+.pagination button {
+    background-color: #606C37;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.pagination button.active {
+    background-color: #606C37;
+    color: white;
+}
+
+.pagination button:disabled {
+    background-color: #606C37;
+    cursor: not-allowed;
+}
+
 /* Button styles */
 .btn {
     font-size: 0.9rem;
@@ -70,6 +100,35 @@
     background-color: #606C37;
     border-color: #606C37;
 }
+
+.btn-edit {
+    background-color: #007bff; /* Color verde musgo */
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-edit:hover {
+    background-color: #0056b3; /* Un tono más oscuro para hover */
+}
+
+.btn-delete {
+    background-color: #dc3545; /* Color verde musgo */
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-delete:hover {
+    background-color: #a71d2a; /* Un tono más oscuro para hover */
+}
+
+/* Espaciado entre los botones en la tabla */
+.btn-edit,
+.btn-delete {
+    margin-bottom: 5px; /* Espacio vertical entre los botones */
+}
+
 
 /* Modal styles */
 .modal-content {

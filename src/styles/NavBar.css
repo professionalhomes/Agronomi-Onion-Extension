@@ -3,7 +3,8 @@
     position: fixed;
     top: 0;
     left: 0;
-    height: 100%;
+    height: 100vh;
+    width: 250px;
     background-color: #556b2f; /* Verde musgo */
     color: white;
     transition: width 0.3s ease;
@@ -12,6 +13,8 @@
     flex-direction: column;
     align-items: center;
     z-index: 1000;
+    justify-content: flex-start; /* Alineamos los elementos al inicio */
+    padding-top: 20px; /* Añadimos algo de espacio superior */
 }
 
 /* Estilos para cuando está desplegado */
@@ -21,19 +24,22 @@
 
 /* Estilos para cuando está colapsado */
 .nav.collapsed {
-    width: 60px; /* Ancho reducido */
+    width: 70px; /* Ancho reducido */
 }
 
 /* Botón para colapsar/desplegar */
 .nav__toggle {
-    margin: 10px;
+    margin-bottom: 20px;
     background: none;
     border: none;
     color: white;
     font-size: 20px;
     cursor: pointer;
-    align-self: flex-end;
-    transition: transform 0.3s ease;
+    align-self: flex-start;
+    transition: transform 0.3s;
+    top: 20px;
+    right: -25px;
+    background-color: #556b2f;
 }
 
 /* Contenedor del navbar */
@@ -50,7 +56,7 @@
     display: flex;
     align-items: center;
     text-decoration: none;
-    padding: 10px 15px;
+    padding: 10px 20px;
     color: white;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -96,10 +102,14 @@
     font-size: 18px;
     font-weight: bold;
     text-align: center;
+    color: #fff;
+    text-decoration: none;
 }
 
 .nav__logo-name {
     margin-left: 10px;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 /* Ajustar el logo en estado colapsado */
@@ -166,4 +176,33 @@
 
 .nav.collapsed .nav__dropdown-item {
     display: none;
+}
+
+.content {
+    margin-left: 250px; /* Margen cuando el navbar está abierto */
+    transition: margin-left 0.3s ease; /* Movimiento suave */
+  }
+  
+.content.collapsed {
+    margin-left: 70px; /* Ajusta el margen cuando el navbar está colapsado */
+}
+
+/* Footer ajustes */
+.nav__footer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinea los elementos del footer a la izquierda */
+    margin-top: auto; /* Empuja hacia abajo el footer */
+    padding-left: 10px; /* Espaciado interno del footer */
+    margin-bottom: 20px;
+}
+
+.nav__footer .nav__logo {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
 }
