@@ -1,24 +1,24 @@
 import React, { useState } from 'react';
 import '../styles/Views.css';
 
-const SeleccionView: React.FC = () => {
+const CosechaView: React.FC = () => {
     const [showModal, setShowModal] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [rowsPerPage, setRowsPerPage] = useState(5);
 
     // Datos quemados para la tabla
     const terrenos = [
-        { codigo: 'T-001', tamanio: '10 ha', areaCultivo: '8 ha', analisis: 'Óptimo', costoOportunidad: '$5000', analisisPatologico: 'Sin plagas', ubicacion: 'Provincia A' },
-        { codigo: 'T-002', tamanio: '15 ha', areaCultivo: '12 ha', analisis: 'Regular', costoOportunidad: '$3000', analisisPatologico: 'Plaga leve', ubicacion: 'Provincia B' },
-        { codigo: 'T-003', tamanio: '5 ha', areaCultivo: '4 ha', analisis: 'Óptimo', costoOportunidad: '$2000', analisisPatologico: 'Sin plagas', ubicacion: 'Provincia C' },
-        { codigo: 'T-004', tamanio: '8 ha', areaCultivo: '6 ha', analisis: 'Deficiente', costoOportunidad: '$1000', analisisPatologico: 'Plaga grave', ubicacion: 'Provincia D' },
-        { codigo: 'T-005', tamanio: '12 ha', areaCultivo: '10 ha', analisis: 'Óptimo', costoOportunidad: '$4000', analisisPatologico: 'Sin plagas', ubicacion: 'Provincia E' },
-        { codigo: 'T-006', tamanio: '20 ha', areaCultivo: '15 ha', analisis: 'Regular', costoOportunidad: '$6000', analisisPatologico: 'Plaga leve', ubicacion: 'Provincia F' },
-        { codigo: 'T-007', tamanio: '7 ha', areaCultivo: '5 ha', analisis: 'Óptimo', costoOportunidad: '$2500', analisisPatologico: 'Sin plagas', ubicacion: 'Provincia G' },
-        { codigo: 'T-008', tamanio: '9 ha', areaCultivo: '7 ha', analisis: 'Deficiente', costoOportunidad: '$1800', analisisPatologico: 'Plaga moderada', ubicacion: 'Provincia H' },
-        { codigo: 'T-009', tamanio: '14 ha', areaCultivo: '11 ha', analisis: 'Óptimo', costoOportunidad: '$4500', analisisPatologico: 'Sin plagas', ubicacion: 'Provincia I' },
-        { codigo: 'T-010', tamanio: '18 ha', areaCultivo: '14 ha', analisis: 'Regular', costoOportunidad: '$5500', analisisPatologico: 'Plaga leve', ubicacion: 'Provincia J' },
-    ];
+        { codigo: 'T-001', costoArranque: '$300', costoLavado: '$200', costoSaco: '$100', costoTransporte: '$400' },
+        { codigo: 'T-002', costoArranque: '$350', costoLavado: '$250', costoSaco: '$150', costoTransporte: '$450' },
+        { codigo: 'T-003', costoArranque: '$400', costoLavado: '$300', costoSaco: '$200', costoTransporte: '$500' },
+        { codigo: 'T-004', costoArranque: '$450', costoLavado: '$350', costoSaco: '$250', costoTransporte: '$550' },
+        { codigo: 'T-005', costoArranque: '$500', costoLavado: '$400', costoSaco: '$300', costoTransporte: '$600' },
+        { codigo: 'T-006', costoArranque: '$550', costoLavado: '$450', costoSaco: '$350', costoTransporte: '$650' },
+        { codigo: 'T-007', costoArranque: '$600', costoLavado: '$500', costoSaco: '$400', costoTransporte: '$700' },
+        { codigo: 'T-008', costoArranque: '$650', costoLavado: '$550', costoSaco: '$450', costoTransporte: '$750' },
+        { codigo: 'T-009', costoArranque: '$700', costoLavado: '$600', costoSaco: '$500', costoTransporte: '$800' },
+        { codigo: 'T-010', costoArranque: '$750', costoLavado: '$650', costoSaco: '$550', costoTransporte: '$850' },
+    ];    
 
     // Lógica para paginación
     const totalPages = Math.ceil(terrenos.length / rowsPerPage);
@@ -34,7 +34,7 @@ const SeleccionView: React.FC = () => {
 
     return (
         <div className="seleccion-view">
-            <h2 className="header-title">Selección del terreno</h2>
+            <h2 className="header-title">Cosecha del terreno</h2>
 
             <div className="card">
                 <div className="card-header">Datos registrados</div>
@@ -68,12 +68,10 @@ const SeleccionView: React.FC = () => {
                             <thead>
                                 <tr>
                                     <th>Terreno</th>
-                                    <th>Tamaño</th>
-                                    <th>Área de cultivo</th>
-                                    <th>Análisis</th>
-                                    <th>Costo de oportunidad</th>
-                                    <th>Análisis Patológico</th>
-                                    <th>Ubicación</th>
+                                    <th>Costo mano de obra de arranque</th>
+                                    <th>Costo Por Lavado</th>
+                                    <th>Costo Por Saco</th>
+                                    <th>Costo Por Transporte Carga</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -81,12 +79,10 @@ const SeleccionView: React.FC = () => {
                                 {currentData.map((terreno, index) => (
                                     <tr key={index}>
                                         <td>{terreno.codigo}</td>
-                                        <td>{terreno.tamanio}</td>
-                                        <td>{terreno.areaCultivo}</td>
-                                        <td>{terreno.analisis}</td>
-                                        <td>{terreno.costoOportunidad}</td>
-                                        <td>{terreno.analisisPatologico}</td>
-                                        <td>{terreno.ubicacion}</td>
+                                        <td>{terreno.costoArranque}</td>
+                                        <td>{terreno.costoLavado}</td>
+                                        <td>{terreno.costoSaco}</td>
+                                        <td>{terreno.costoTransporte}</td>
                                         <td>
                                             <button className="btn btn-primary btn-edit">Editar</button>
                                             <button className="btn btn-danger btn-delete">Eliminar</button>
@@ -126,4 +122,4 @@ const SeleccionView: React.FC = () => {
     );
 };
 
-export default SeleccionView;
+export default CosechaView;

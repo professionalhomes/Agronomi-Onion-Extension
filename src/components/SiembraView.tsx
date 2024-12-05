@@ -1,24 +1,25 @@
 import React, { useState } from 'react';
 import '../styles/Views.css';
 
-const SeleccionView: React.FC = () => {
+const SiembraView: React.FC = () => {
     const [showModal, setShowModal] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [rowsPerPage, setRowsPerPage] = useState(5);
 
     // Datos quemados para la tabla
     const terrenos = [
-        { codigo: 'T-001', tamanio: '10 ha', areaCultivo: '8 ha', analisis: 'Óptimo', costoOportunidad: '$5000', analisisPatologico: 'Sin plagas', ubicacion: 'Provincia A' },
-        { codigo: 'T-002', tamanio: '15 ha', areaCultivo: '12 ha', analisis: 'Regular', costoOportunidad: '$3000', analisisPatologico: 'Plaga leve', ubicacion: 'Provincia B' },
-        { codigo: 'T-003', tamanio: '5 ha', areaCultivo: '4 ha', analisis: 'Óptimo', costoOportunidad: '$2000', analisisPatologico: 'Sin plagas', ubicacion: 'Provincia C' },
-        { codigo: 'T-004', tamanio: '8 ha', areaCultivo: '6 ha', analisis: 'Deficiente', costoOportunidad: '$1000', analisisPatologico: 'Plaga grave', ubicacion: 'Provincia D' },
-        { codigo: 'T-005', tamanio: '12 ha', areaCultivo: '10 ha', analisis: 'Óptimo', costoOportunidad: '$4000', analisisPatologico: 'Sin plagas', ubicacion: 'Provincia E' },
-        { codigo: 'T-006', tamanio: '20 ha', areaCultivo: '15 ha', analisis: 'Regular', costoOportunidad: '$6000', analisisPatologico: 'Plaga leve', ubicacion: 'Provincia F' },
-        { codigo: 'T-007', tamanio: '7 ha', areaCultivo: '5 ha', analisis: 'Óptimo', costoOportunidad: '$2500', analisisPatologico: 'Sin plagas', ubicacion: 'Provincia G' },
-        { codigo: 'T-008', tamanio: '9 ha', areaCultivo: '7 ha', analisis: 'Deficiente', costoOportunidad: '$1800', analisisPatologico: 'Plaga moderada', ubicacion: 'Provincia H' },
-        { codigo: 'T-009', tamanio: '14 ha', areaCultivo: '11 ha', analisis: 'Óptimo', costoOportunidad: '$4500', analisisPatologico: 'Sin plagas', ubicacion: 'Provincia I' },
-        { codigo: 'T-010', tamanio: '18 ha', areaCultivo: '14 ha', analisis: 'Regular', costoOportunidad: '$5500', analisisPatologico: 'Plaga leve', ubicacion: 'Provincia J' },
+        { codigo: 'T-001', costoManoObraAnimal: '$500', costoManoObraSiembra: '$400', costoFertilizacion: '$300', costoSemilla: '$200' },
+        { codigo: 'T-002', costoManoObraAnimal: '$550', costoManoObraSiembra: '$450', costoFertilizacion: '$350', costoSemilla: '$250' },
+        { codigo: 'T-003', costoManoObraAnimal: '$600', costoManoObraSiembra: '$500', costoFertilizacion: '$400', costoSemilla: '$300' },
+        { codigo: 'T-004', costoManoObraAnimal: '$650', costoManoObraSiembra: '$550', costoFertilizacion: '$450', costoSemilla: '$350' },
+        { codigo: 'T-005', costoManoObraAnimal: '$700', costoManoObraSiembra: '$600', costoFertilizacion: '$500', costoSemilla: '$400' },
+        { codigo: 'T-006', costoManoObraAnimal: '$750', costoManoObraSiembra: '$650', costoFertilizacion: '$550', costoSemilla: '$450' },
+        { codigo: 'T-007', costoManoObraAnimal: '$800', costoManoObraSiembra: '$700', costoFertilizacion: '$600', costoSemilla: '$500' },
+        { codigo: 'T-008', costoManoObraAnimal: '$850', costoManoObraSiembra: '$750', costoFertilizacion: '$650', costoSemilla: '$550' },
+        { codigo: 'T-009', costoManoObraAnimal: '$900', costoManoObraSiembra: '$800', costoFertilizacion: '$700', costoSemilla: '$600' },
+        { codigo: 'T-010', costoManoObraAnimal: '$950', costoManoObraSiembra: '$850', costoFertilizacion: '$750', costoSemilla: '$650' },
     ];
+    
 
     // Lógica para paginación
     const totalPages = Math.ceil(terrenos.length / rowsPerPage);
@@ -34,7 +35,7 @@ const SeleccionView: React.FC = () => {
 
     return (
         <div className="seleccion-view">
-            <h2 className="header-title">Selección del terreno</h2>
+            <h2 className="header-title">Siembra del terreno</h2>
 
             <div className="card">
                 <div className="card-header">Datos registrados</div>
@@ -68,12 +69,10 @@ const SeleccionView: React.FC = () => {
                             <thead>
                                 <tr>
                                     <th>Terreno</th>
-                                    <th>Tamaño</th>
-                                    <th>Área de cultivo</th>
-                                    <th>Análisis</th>
-                                    <th>Costo de oportunidad</th>
-                                    <th>Análisis Patológico</th>
-                                    <th>Ubicación</th>
+                                    <th>Costo mano de obra animal</th>
+                                    <th>Costo mano de obra siembra</th>
+                                    <th>Costo Por Fertilizacion</th>
+                                    <th>Costo de semilla</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -81,12 +80,10 @@ const SeleccionView: React.FC = () => {
                                 {currentData.map((terreno, index) => (
                                     <tr key={index}>
                                         <td>{terreno.codigo}</td>
-                                        <td>{terreno.tamanio}</td>
-                                        <td>{terreno.areaCultivo}</td>
-                                        <td>{terreno.analisis}</td>
-                                        <td>{terreno.costoOportunidad}</td>
-                                        <td>{terreno.analisisPatologico}</td>
-                                        <td>{terreno.ubicacion}</td>
+                                        <td>{terreno.costoManoObraAnimal}</td>
+                                        <td>{terreno.costoManoObraSiembra}</td>
+                                        <td>{terreno.costoFertilizacion}</td>
+                                        <td>{terreno.costoSemilla}</td>
                                         <td>
                                             <button className="btn btn-primary btn-edit">Editar</button>
                                             <button className="btn btn-danger btn-delete">Eliminar</button>
@@ -126,4 +123,4 @@ const SeleccionView: React.FC = () => {
     );
 };
 
-export default SeleccionView;
+export default SiembraView;

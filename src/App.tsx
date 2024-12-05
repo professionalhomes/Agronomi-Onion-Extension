@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import SeleccionView from './components/SeleccionView';
+import LabranzaView from './components/LabranzaView';
+import TratamientoView from './components/TratamientoView';
+import SiembraView from './components/SiembraView';
+import CosechaView from './components/CosechaView';
 import '../src/styles/NavBar.css';
 
 const App: React.FC = () => {
@@ -24,6 +28,10 @@ const App: React.FC = () => {
                 >
                     <Routes>
                         <Route path="/seleccion" element={<SeleccionView />} />
+                        <Route path="/labranza" element={<LabranzaView />} />
+                        <Route path="/tratamiento" element={<TratamientoView />} />
+                        <Route path="/siembra" element={<SiembraView />} />
+                        <Route path="/cosecha" element={<CosechaView />} />
                         {/* Otras rutas */}
                         <Route path="/" element={<h1 style={{ color: '#242424' }}>Bienvenido a Agronomi Cebolla</h1>} />s
                     </Routes>

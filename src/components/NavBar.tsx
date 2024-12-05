@@ -56,7 +56,7 @@ const NavBar: React.FC<NavBarProps> = ({ isOpen, setIsOpen }) => {
               {/* Other links */}
               <a href="#" className="nav__link">
                 <i className="bx bx-sun nav__icon"></i>
-                {isOpen && <span className="nav__name">Siembra</span>}
+                <Link to="/siembra"> {isOpen && <span className="nav__name">Siembra</span> } </Link>
               </a>
             </div>
             <div className="nav__items">
@@ -66,7 +66,7 @@ const NavBar: React.FC<NavBarProps> = ({ isOpen, setIsOpen }) => {
               </a>
               <a href="#" className="nav__link">
                 <i className="bx bx-spa nav__icon"></i>
-                {isOpen && <span className="nav__name">Cosecha</span>}
+                <Link to="/cosecha"> {isOpen && <span className="nav__name">Cosecha</span> } </Link>
               </a>
             </div>
           </div>
