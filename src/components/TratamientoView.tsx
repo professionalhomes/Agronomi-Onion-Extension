@@ -119,6 +119,54 @@ const TratamientoView: React.FC = () => {
                     </div>
                 </div>
             </div>
+            {/* Modal */}
+            {showModal && (
+                <div className="modal-overlay">
+                    <div className="modal">
+                        <div className="modal-header">
+                            <h5>Agregar Nuevo Terreno</h5>
+                        </div>
+                        <div className="modal-body">
+                            <form>
+                                <div className="form-group">
+                                    <label>Código del Terreno:</label>
+                                    <input type="text" className="form-control" placeholder="T-XXX" />
+                                </div>
+                                <div className="form-group">
+                                    <label>Tamaño:</label>
+                                    <input type="text" className="form-control" placeholder="Ej: 10 ha" />
+                                </div>
+                                <div className="form-group">
+                                    <label>Área de Cultivo:</label>
+                                    <input type="text" className="form-control" placeholder="Ej: 8 ha" />
+                                </div>
+                                <div className="form-group">
+                                    <label>Análisis:</label>
+                                    <input type="text" className="form-control" placeholder="Ej: Óptimo" />
+                                </div>
+                                <div className="form-group">
+                                    <label>Costo de Oportunidad:</label>
+                                    <input type="text" className="form-control" placeholder="Ej: $5000" />
+                                </div>
+                                <div className="form-group">
+                                    <label>Análisis Patológico:</label>
+                                    <input type="text" className="form-control" placeholder="Ej: Sin plagas" />
+                                </div>
+                                <div className="form-group">
+                                    <label>Ubicación:</label>
+                                    <input type="text" className="form-control" placeholder="Provincia, Cantón, Distrito" />
+                                </div>
+                            </form>
+                        </div>
+                        <div className="modal-footer">
+                            <button className="btn btn-secondary" onClick={closeModal}>
+                                Cerrar
+                            </button>
+                            <button className="btn btn-success">Guardar</button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

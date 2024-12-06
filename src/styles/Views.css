@@ -102,7 +102,7 @@
 }
 
 .btn-edit {
-    background-color: #007bff; /* Color verde musgo */
+    background-color: #007bff; /* Azul para editar */
     color: white;
     border: none;
     transition: background-color 0.3s ease;
@@ -113,7 +113,7 @@
 }
 
 .btn-delete {
-    background-color: #dc3545; /* Color verde musgo */
+    background-color: #dc3545; /* Rojo para eliminar */
     color: white;
     border: none;
     transition: background-color 0.3s ease;
@@ -129,32 +129,115 @@
     margin-bottom: 5px; /* Espacio vertical entre los botones */
 }
 
-
 /* Modal styles */
-.modal-content {
-    width: 100%;
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal {
+    background-color: #fff;
+    width: 50%;
     max-width: 600px;
-    margin: 0 auto; /* Centra el modal */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    padding: 20px;
 }
 
 .modal-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Centramos el título */
     align-items: center;
-    font-size: 1.2rem;
-    color: white;
-    background-color: #606C37;
-    padding: 10px 20px;
+    margin-bottom: 10px;
+}
+
+.modal-header h5 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: #283618; /* Verde musgo */
+    text-align: center;
+}
+
+.close-btn {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #333;
 }
 
 .modal-body {
-    margin: 20px 0;
+    margin-bottom: 20px;
     font-size: 0.9rem;
+}
+
+.modal-body label {
+    display: block;
+    margin-bottom: 5px;
+    color: #000; /* Color negro para los títulos */
+    font-weight: bold;
+}
+
+.modal-body input,
+.modal-body select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff; /* Fondo blanco para los inputs */
+    color: #000; /* Texto negro dentro de los inputs */
+    font-size: 0.9rem;
+    box-sizing: border-box;
+}
+
+.modal-body input::placeholder,
+.modal-body select::placeholder {
+    color: #000; /* Color negro para los placeholders */
 }
 
 .modal-footer {
     display: flex;
     justify-content: flex-end;
+}
+
+.modal-footer .btn {
+    margin-left: 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-footer .btn-success {
+    background-color: #606C37;
+    color: #fff;
+    border: none;
+}
+
+.modal-footer .btn-danger {
+    background-color: #333;
+    color: #fff;
+    border: none;
+}
+
+.modal-footer .btn-success:hover {
+    background-color: #4e592f;
+}
+
+.modal-footer .btn-danger:hover {
+    background-color: #222;
 }
 
 /* Responsive adjustments */
@@ -174,5 +257,9 @@
 
     .modal-content {
         width: 95%; /* Ocupa casi todo el ancho en pantallas pequeñas */
+    }
+
+    .modal-header h5 {
+        font-size: 1.2rem;
     }
 }
