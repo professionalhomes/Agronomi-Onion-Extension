@@ -3,11 +3,12 @@ import '../styles/Views.css';
 
 const SeleccionView: React.FC = () => {
     const [showModal, setShowModal] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [rowsPerPage, setRowsPerPage] = useState(5);
-
-    // Datos quemados para la tabla
-    const terrenos = [
+    const [selectedTerreno, setSelectedTerreno] = useState<any>(null); // Estado para almacenar el registro seleccionado
+     // Datos quemados para la tabla
+    const [terrenos, setTerrenos] = useState<any[]>([
         { codigo: 'T-001', tamanio: '10 ha', areaCultivo: '8 ha', analisis: 'Óptimo', costoOportunidad: '$5000', analisisPatologico: 'Sin plagas', ubicacion: 'Provincia A' },
         { codigo: 'T-002', tamanio: '15 ha', areaCultivo: '12 ha', analisis: 'Regular', costoOportunidad: '$3000', analisisPatologico: 'Plaga leve', ubicacion: 'Provincia B' },
         { codigo: 'T-003', tamanio: '5 ha', areaCultivo: '4 ha', analisis: 'Óptimo', costoOportunidad: '$2000', analisisPatologico: 'Sin plagas', ubicacion: 'Provincia C' },
@@ -18,8 +19,8 @@ const SeleccionView: React.FC = () => {
         { codigo: 'T-008', tamanio: '9 ha', areaCultivo: '7 ha', analisis: 'Deficiente', costoOportunidad: '$1800', analisisPatologico: 'Plaga moderada', ubicacion: 'Provincia H' },
         { codigo: 'T-009', tamanio: '14 ha', areaCultivo: '11 ha', analisis: 'Óptimo', costoOportunidad: '$4500', analisisPatologico: 'Sin plagas', ubicacion: 'Provincia I' },
         { codigo: 'T-010', tamanio: '18 ha', areaCultivo: '14 ha', analisis: 'Regular', costoOportunidad: '$5500', analisisPatologico: 'Plaga leve', ubicacion: 'Provincia J' },
-    ];
-
+    ]);
+   
     // Lógica para paginación
     const totalPages = Math.ceil(terrenos.length / rowsPerPage);
     const currentData = terrenos.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
@@ -29,8 +30,31 @@ const SeleccionView: React.FC = () => {
         setCurrentPage(1); // Reinicia a la primera página
     };
 
-    const openModal = () => setShowModal(true);
-    const closeModal = () => setShowModal(false);
+    const openModal = (terreno: any) => {
+        setSelectedTerreno(terreno); // Carga el registro seleccionado en el estado
+        setShowModal(true); // Muestra el modal
+    };
+
+    const closeModal = () => {
+        setSelectedTerreno(null); // Limpia el estado seleccionado
+        setShowModal(false); // Cierra el modal
+    };
+
+    const openDeleteModal = (terreno: any) => {
+        setSelectedTerreno(terreno);
+        setShowDeleteModal(true);
+    };
+
+    const closeDeleteModal = () => {
+        setSelectedTerreno(null);
+        setShowDeleteModal(false);
+    };
+
+    const handleDelete = () => {
+        setTerrenos((prev) => prev.filter((terreno) => terreno.codigo !== selectedTerreno.codigo));
+        closeDeleteModal();
+    };
+
 
     return (
         <div className="seleccion-view">
@@ -41,13 +65,13 @@ const SeleccionView: React.FC = () => {
                 <div className="card-body">
                     <div className="row">
                         <div className="col-6">
-                            <button className="btn btn-success" onClick={openModal}>
+                            <button className="btn btn-success" onClick={() => openModal(null)}>
                                 Agregar
                             </button>
                         </div>
                         <div className="col-6 text-end">
                             <label style={{ color: '#242424' }}>
-                                Registros por página mostrados:
+                                Registros por pagina mostrados:
                                 <select
                                     value={rowsPerPage}
                                     onChange={handleRowsPerPageChange}
@@ -88,8 +112,15 @@ const SeleccionView: React.FC = () => {
                                         <td>{terreno.analisisPatologico}</td>
                                         <td>{terreno.ubicacion}</td>
                                         <td>
-                                            <button className="btn btn-primary btn-edit">Editar</button>
-                                            <button className="btn btn-danger btn-delete">Eliminar</button>
+                                            <button className="btn btn-primary btn-edit" onClick={() => openModal(terreno)}>
+                                                Editar
+                                            </button>
+                                            <button
+                                                className="btn btn-danger btn-delete"
+                                                onClick={() => openDeleteModal(terreno)}
+                                            >
+                                                Eliminar
+                                            </button>
                                         </td>
                                     </tr>
                                 ))}
@@ -128,45 +159,96 @@ const SeleccionView: React.FC = () => {
                 <div className="modal-overlay">
                     <div className="modal">
                         <div className="modal-header">
-                            <h5>Agregar Nuevo Terreno</h5>
+                            <h5>{selectedTerreno ? 'Editar Terreno' : 'Agregar Nuevo Terreno'}</h5>
+                            <button className="close-btn" onClick={closeModal}>
+                                &times;
+                            </button>
                         </div>
                         <div className="modal-body">
                             <form>
-                                <div className="form-group">
-                                    <label>Código del Terreno:</label>
-                                    <input type="text" className="form-control" placeholder="T-XXX" />
-                                </div>
-                                <div className="form-group">
-                                    <label>Tamaño:</label>
-                                    <input type="text" className="form-control" placeholder="Ej: 10 ha" />
-                                </div>
-                                <div className="form-group">
-                                    <label>Área de Cultivo:</label>
-                                    <input type="text" className="form-control" placeholder="Ej: 8 ha" />
-                                </div>
-                                <div className="form-group">
-                                    <label>Análisis:</label>
-                                    <input type="text" className="form-control" placeholder="Ej: Óptimo" />
-                                </div>
-                                <div className="form-group">
-                                    <label>Costo de Oportunidad:</label>
-                                    <input type="text" className="form-control" placeholder="Ej: $5000" />
-                                </div>
-                                <div className="form-group">
-                                    <label>Análisis Patológico:</label>
-                                    <input type="text" className="form-control" placeholder="Ej: Sin plagas" />
-                                </div>
-                                <div className="form-group">
-                                    <label>Ubicación:</label>
-                                    <input type="text" className="form-control" placeholder="Provincia, Cantón, Distrito" />
-                                </div>
+                                <label>Código del terreno</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    value={selectedTerreno?.codigo || ''}
+                                    placeholder="T-XXX"
+                                    readOnly={!!selectedTerreno}
+                                />
+                                <label>Tamaño en hectáreas</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    value={selectedTerreno?.tamanio || ''}
+                                    placeholder="Ej: 10 ha"
+                                />
+                                <label>Área de cultivo</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    value={selectedTerreno?.areaCultivo || ''}
+                                    placeholder="Ej: 8 ha"
+                                />
+                                <label>Análisis</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    value={selectedTerreno?.analisis || ''}
+                                    placeholder="Ej: Óptimo"
+                                />
+                                <label>Costo de oportunidad</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    value={selectedTerreno?.costoOportunidad || ''}
+                                    placeholder="Ej: $5000"
+                                />
+                                <label>Análisis Patológico</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    value={selectedTerreno?.analisisPatologico || ''}
+                                    placeholder="Ej: Sin plagas"
+                                />
+                                <label>Ubicación</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    value={selectedTerreno?.ubicacion || ''}
+                                    placeholder="Provincia, Cantón, Distrito"
+                                />
                             </form>
                         </div>
                         <div className="modal-footer">
-                            <button className="btn btn-secondary" onClick={closeModal}>
+                            <button className="btn btn-danger" onClick={closeModal}>
                                 Cerrar
                             </button>
                             <button className="btn btn-success">Guardar</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+            {/* Modal de confirmación de eliminación */}
+            {showDeleteModal && (
+                <div className="modal-overlay">
+                    <div className="modal">
+                        <div className="modal-header">
+                            <h5>Confirmar Eliminación</h5>
+                            <button className="close-btn" onClick={closeDeleteModal}>
+                                &times;
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                            <p className="modal-delete-text">
+                                ¿Deseas eliminar el registro con código <strong>{selectedTerreno?.codigo}</strong>?
+                            </p>
+                        </div>
+                        <div className="modal-footer">
+                            <button className="btn btn-danger" onClick={closeDeleteModal}>
+                                Cancelar
+                            </button>
+                            <button className="btn btn-success" onClick={handleDelete}>
+                                Eliminar
+                            </button>
                         </div>
                     </div>
                 </div>

@@ -189,6 +189,13 @@
     font-weight: bold;
 }
 
+.modal-delete-text {
+    color: #000; /* Cambia el color del texto a blanco */
+    font-size: 1rem; /* Ajusta el tamaño del texto si es necesario */
+    text-align: left; /* Centra el texto */
+    margin: 0;
+}
+
 .modal-body input,
 .modal-body select {
     width: 100%;
