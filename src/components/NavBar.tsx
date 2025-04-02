@@ -7,6 +7,8 @@ interface NavBarProps {
   setIsOpen: (isOpen: boolean) => void;
 }
 
+
+
 const NavBar: React.FC<NavBarProps> = ({ isOpen, setIsOpen }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
